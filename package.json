@@ -1,0 +1,33 @@
+{
+  "name": "burdy-starter-mui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+
+    "dev": "concurrently \"npm:dev:*\"",
+    "dev:cms": "cd cms && npm run dev",
+    "dev:web": "cd web && npm run dev",
+
+    "ssg": "concurrently \"npm:dev:cms\" \"wait-on http://localhost:4000/api/health && npm run build:web && npm run export:web\"",
+
+    "build:cms": "cd cms && npm run build",
+    "build:web": "cd web && npm run build",
+
+    "export:web": "cd web && npm run export",
+
+    "db:init": "node init.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "concurrently": "^7.0.0",
+    "execa": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0"
+  }
+}
